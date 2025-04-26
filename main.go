@@ -21,11 +21,18 @@ func main() {
 	app := fiber.New()
 
 	app.Get("/", func(c *fiber.Ctx) error {
-  c.Links(
-    "https://github.com/kmscom/Browser-Cache-Folder-Changer", "Web Browser Cache Folder Changer",
-    "https://github.com/kmscom/Browser-Cache-Folder-Changer/releases", "Download",
-  )
-})
+		return c.SendString(`
+        <html>
+        <body>
+            <h1>Web Browser Cache Folder Changer</h1>
+            <ul>
+                <li><a href="https://github.com/kmscom/Browser-Cache-Folder-Changer">GitHub Repository</a></li>
+                <li><a href="https://github.com/kmscom/Browser-Cache-Folder-Changer/releases">Download</a></li>
+            </ul>
+        </body>
+        </html>
+    `)
+	})
 
 	app.Listen(getPort())
 }
